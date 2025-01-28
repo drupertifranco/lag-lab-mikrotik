@@ -13,11 +13,11 @@ topology:
     ce1:
       kind: linux
       binds:  
-        - configs/ce1-config.sh:/ce1-config.sh
+        - config/ce1-config.sh:/ce1-config.sh
       exec:
         - bash /ce1-config.sh    
 
   links:
     # ce links
-    - endpoints: ["ce1:eth1", "ros:ether2"]
-    - endpoints: ["ce1:eth2", "ros:ether3"]
+    - endpoints: ["ce1:eth1", "ros:eth1"]
+    - endpoints: ["ce1:eth2", "ros:eth2"]
