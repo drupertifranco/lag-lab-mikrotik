@@ -1,17 +1,15 @@
-name: lab-lag
+name: lab-lag-mikrotik
 
 topology:
   kinds:
-    srl:
-      image: ghcr.io/nokia/srlinux:23.7.1
+    mikrotik_ros:
+      image: vrnetlab/mikrotik_routeros:6.49.17
     linux:
       image: ghcr.io/srl-labs/alpine:latest
 
   nodes:
-    # srl nodes with startup configs
-    leaf1:
-      kind: srl
-      type: ixrd2
+    ros:
+      kind: mikrotik_ros
     ce1:
       kind: linux
       binds:  
@@ -21,6 +19,5 @@ topology:
 
   links:
     # ce links
-    - endpoints: ["ce1:eth1", "leaf1:e1-1"]
-    - endpoints: ["ce1:eth2", "leaf1:e1-2"]
-
+    - endpoints: ["ce1:eth1", "ros:ether2"]
+    - endpoints: ["ce1:eth2", "ros:ether3"]
